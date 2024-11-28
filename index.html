@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oslo Agencia de Viajes | Premium Travel Experiences</title>
+    
+    <!-- SEO & Social Meta Tags -->
+    <meta name="description" content="Experience luxury travel with Oslo Agencia de Viajes. SECTUR-registered agency specializing in XV años, destination weddings, Disney experiences, and premium vacation packages.">
+    <meta property="og:title" content="Oslo Agencia de Viajes | Premium Travel Agency">
+    <meta property="og:description" content="Crafting unforgettable travel experiences. SECTUR-registered luxury travel agency.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico:wght@400&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Core Design System */
+        :root {
+            /* Brand Colors - From Master Plan */
+            --color-primary: #40E0D0;
+            --color-secondary: #3CB371;
+            --color-accent: #FF7F50;
+            --color-dark: #003366;
+            --color-light: #FAFAFA;
+            --color-gray-100: #F5F5F5;
+            --color-gray-200: #EEEEEE;
+            --color-gray-300: #E0E0E0;
+            --color-gray-400: #BDBDBD;
+            --color-gray-500: #9E9E9E;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #40E0D0, #3CB371);
+            --gradient-dark: linear-gradient(135deg, #003366, #004880);
+            --gradient-overlay: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+            
+            /* Typography */
+            --font-primary: 'Pacifico', cursive;
+            --font-body: 'Open Sans', sans-serif;
+            
+            /* Spacing System */
+            --space-xs: clamp(0.75rem, 1vw, 1rem);
+            --space-sm: clamp(1rem, 2vw, 1.5rem);
+            --space-md: clamp(2rem, 4vw, 3rem);
+            --space-lg: clamp(3rem, 6vw, 4rem);
+            --space-xl: clamp(4rem, 8vw, 6rem);
+            
+            /* Transitions */
+            --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* Reset & Base Styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.5;
+            color: var(--color-dark);
+            background-color: var(--color-light);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            transition: var(--transition-normal);
+            padding: var(--space-sm) 0;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: var(--space-xs) 0;
+        }
+
+        .container {
+            max-width: min(1400px, 90%);
+            margin: 0 auto;
+            padding: 0 var(--space-sm);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-primary);
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            color: var(--color-light);
+            text-decoration: none;
+            transition: var(--transition-normal);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s var(--transition-bounce) forwards;
+        }
+
+        .header.scrolled .nav-logo {
+            color: var(--color-dark);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: var(--space-md);
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s var(--transition-bounce) 0.2s forwards;
+        }
+
+        .nav-link {
+            color: var(--color-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition-normal);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .header.scrolled .nav-link {
+            color: var(--color-dark);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform var(--transition-normal);
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-cta {
+            background: var(--gradient-primary);
+            color: var(--color-light);
+            padding: 0.8rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-bounce);
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(64, 224, 208, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: url('https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f') center/cover no-repeat;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-overlay);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 var(--space-md);
+            color: var(--color-light);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: var(--space-md);
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s var(--transition-bounce) 0.4s forwards;
+        }
+
+        .hero-title {
+            font-family: var(--font-primary);
+            font-size: clamp(3rem, 8vw, 5rem);
+            line-height: 1.2;
+            margin-bottom: var(--space-md);
+  
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s var(--transition-bounce) 0.6s forwards;
+        }
+
+        .hero-description {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-weight: 300;
+            margin-bottom: var(--space-lg);
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s var(--transition-bounce) 0.8s forwards;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: var(--color-light);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition-bounce);
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s var(--transition-bounce) 1s forwards;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(64, 224, 208, 0.4);
+        }
+
+/* Featured Destinations */
+        .destinations {
+            padding: var(--space-xl) 0;
+            background: var(--color-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .destinations::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 0% 0%, rgba(64,224,208,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(60,179,113,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section-header.visible {
+            animation: fadeInUp 0.8s var(--transition-bounce) forwards;
+        }
+
+        .section-subtitle {
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .section-title {
+            font-family: var(--font-primary);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--color-dark);
+            margin-bottom: var(--space-sm);
+        }
+   .section-title {
+            font-family: var(--font-primary);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--color-dark);
+            margin-bottom: var(--space-sm);
+        }
+.section-title-promotions {
+            font-family: var(--font-primary);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: white;
+            margin-bottom: var(--space-sm);
+        }
+        .section-description {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--color-gray-500);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: var(--space-md);
+            padding: 0 var(--space-sm);
+        }
+
+        .destination-card {
+            position: relative;
+            height: 600px;
+            border-radius: 30px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .destination-card.visible {
+            animation: fadeInUp 0.8s var(--transition-bounce) forwards;
+        }
+
+        .destination-card.featured {
+            grid-column: span 8;
+        }
+
+        .destination-card.regular {
+            grid-column: span 4;
+        }
+
+        .destination-image {
+            position: absolute;
+            inset: 0;
+        }
+
+        .destination-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            transition: transform 1s var(--transition-normal);
+        }
+
+        .destination-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-overlay);
+            opacity: 0.7;
+            transition: opacity var(--transition-normal);
+        }
+
+        .destination-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: var(--space-lg);
+            color: var(--color-light);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all var(--transition-normal);
+        }
+
+        .destination-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--space-sm);
+        }
+
+        .destination-title {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .destination-price {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: var(--space-md);
+        }
+
+        .destination-features {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--transition-normal) 0.2s;
+        }
+
+        .destination-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .destination-feature i {
+            color: var(--color-primary);
+        }
+
+        .destination-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: var(--color-light);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--transition-normal) 0.3s;
+        }
+
+        .destination-card:hover .destination-image img {
+            transform: scale(1);
+        }
+
+        .destination-card:hover .destination-overlay {
+            opacity: 0.85;
+        }
+
+        .destination-card:hover .destination-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .destination-card:hover .destination-features,
+        .destination-card:hover .destination-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Services Section */
+        .services {
+            padding: var(--space-xl) 0;
+            background: var(--color-dark);
+            color: var(--color-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2340E0D0' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            position: relative;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 30px;
+            padding: var(--space-lg);
+            transition: all var(--transition-normal);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-card.visible {
+            animation: fadeInUp 0.8s var(--transition-bounce) forwards;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            transition: all var(--transition-bounce);
+        }
+
+        .service-icon i {
+            font-size: 2rem;
+            color: var(--color-light);
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+
+        .service-description {
+            margin-bottom: var(--space-md);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .service-features {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+
+        .service-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .service-feature i {
+            color: var(--color-primary);
+        }
+
+        .service-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: var(--color-light);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            transition: all var(--transition-bounce);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card:hover .service-cta {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(64,224,208,0.2);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: var(--space-xl) 0;
+            background: var(--color-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-container {
+            position: relative;
+        }
+
+        .testimonials-track {
+            display: flex;
+            gap: var(--space-md);
+            transition: transform var(--transition-normal);
+            position: relative;
+        }
+
+        .testimonial-card {
+            min-width: 400px;
+            background: white;
+            border-radius: 30px;
+            padding: var(--space-lg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all var(--transition-normal);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .testimonial-card.visible {
+            animation: fadeInUp 0.8s var(--transition-bounce) forwards;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-info span {
+            color: var(--color-gray-500);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-dark);
+            margin-bottom: var(--space-md);
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 0.25rem;
+            color: #FFC107;
+        }
+/* Promotions Section */
+        .promotions {
+            padding: var(--space-xl) 0;
+            background: linear-gradient(135deg, var(--color-dark) 0%, #002140 100%);
+            color: var(--color-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promotions-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: var(--space-md);
+        }
+
+        .promotion-card {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .promotion-card.visible {
+            animation: fadeInUp 0.8s var(--transition-bounce) forwards;
+        }
+
+        .promotion-card.large {
+            grid-column: span 8;
+        }
+
+        .promotion-card.small {
+            grid-column: span 4;
+        }
+
+        .promotion-image {
+            position: absolute;
+            inset: 0;
+        }
+
+        .promotion-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s var(--transition-normal);
+        }
+
+        .promotion-content {
+            position: absolute;
+            inset: 0;
+            padding: var(--space-lg);
+            background: var(--gradient-overlay);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all var(--transition-normal);
+        }
+
+        .promotion-timer {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 100px;
+            font-size: 0.9rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .promotion-timer i {
+            color: var(--color-primary);
+        }
+
+        .promotion-title {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .promotion-price {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .price-new {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .price-old {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .promotion-features {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--transition-normal) 0.2s;
+        }
+
+        .promotion-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .promotion-feature i {
+            color: var(--color-primary);
+        }
+
+        .promotion-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: var(--color-light);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--transition-normal) 0.3s;
+        }
+
+        .promotion-card:hover .promotion-image img {
+            transform: scale(1.1);
+        }
+
+        .promotion-card:hover .promotion-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .promotion-card:hover .promotion-features,
+        .promotion-card:hover .promotion-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* About Section */
+        .about {
+            padding: var(--space-xl) 0;
+            background: var(--color-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: var(--space-lg);
+            align-items: center;
+        }
+
+        .about-content {
+            grid-column: span 6;
+            padding-right: var(--space-xl);
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .about-content.visible {
+            animation: fadeInLeft 0.8s var(--transition-bounce) forwards;
+        }
+
+        .about-stats {
+            grid-column: span 6;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 30px;
+            padding: var(--space-lg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .stat-card.visible {
+            animation: fadeInUp 0.8s var(--transition-bounce) forwards;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: var(--space-xs);
+        }
+
+        .stat-label {
+            color: var(--color-gray-500);
+            font-size: 1.1rem;
+        }
+
+        .about-images {
+            position: relative;
+            grid-column: span 6;
+            height: 600px;
+        }
+
+        .about-image {
+            position: absolute;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .about-image.main {
+            width: 80%;
+            height: 70%;
+            top: 0;
+            right: 0;
+            z-index: 2;
+        }
+
+        .about-image.secondary {
+            width: 60%;
+            height: 50%;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sectur-badge {
+            position: absolute;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            background: white;
+            padding: var(--space-sm);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 3;
+        }
+
+        .sectur-badge img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .sectur-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sectur-text strong {
+            color: var(--color-dark);
+            font-size: 1.1rem;
+        }
+
+        .sectur-text span {
+            color: var(--color-gray-500);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Form Section */
+        .contact {
+            padding: var(--space-xl) 0;
+            background: linear-gradient(135deg, var(--color-dark) 0%, #002140 100%);
+            color: var(--color-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(64,224,208,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(60,179,113,0.1) 0%, transparent 50%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: var(--space-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-content {
+            grid-column: span 5;
+            padding-right: var(--space-xl);
+        }
+
+        .contact-form {
+            grid-column: span 7;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: var(--space-xl);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-gray-300);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            color: var(--color-light);
+            font-size: 1rem;
+            transition: all var(--transition-normal);
+        }
+
+        .form-input:focus {
+            outline: none;
+            background: rgba(255,255,255,0.1);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(64,224,208,0.2);
+        }
+
+        .form-textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: var(--color-light);
+            border: none;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all var(--transition-bounce);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(64,224,208,0.3);
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content,
+            .contact-content {
+                padding-right: 0;
+                text-align: center;
+            }
+
+            .about-stats {
+                margin: var(--space-lg) 0;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .destinations-grid .destination-card {
+                grid-column: span 12 !important;
+            }
+
+            .promotions-grid .promotion-card {
+                grid-column: span 12 !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-card {
+                min-width: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            :root {
+                --space-xl: 4rem;
+                --space-lg: 2rem;
+                --space-md: 1.5rem;
+                --space-sm: 1rem;
+                --space-xs: 0.5rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 3.5rem);
+            }
+
+            .section-title {
+                font-size: clamp(2rem, 5vw, 3rem);
+            }
+        }
+        /* Loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.loader-inner {
+    text-align: center;
+}
+
+.loader-logo {
+    font-family: var(--font-primary);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loader-progress {
+    width: 200px;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+}
+
+.loader-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease-out;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.6; transform: scale(0.98); }
+}
+    </style>
+
+    <!-- Initialize Intersection Observer for animations -->
+    <script>
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll(
+                '.section-header, .destination-card, .service-card, .testimonial-card, ' +
+                '.promotion-card, .about-content, .stat-card'
+            );
+            
+            elements.forEach(el => observer.observe(el));
+
+           
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Header scroll effect
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+        });
+    </script>
+    <script>document.addEventListener('DOMContentLoaded', () => {
+    const loader = document.querySelector('.loader');
+    const loaderBar = document.querySelector('.loader-bar');
+    let progress = 0;
+    let loadTime = 2000; // Total loading time in ms
+    let interval = 20; // Update interval in ms
+    let increment = (100 * interval) / loadTime;
+
+    const updateLoader = () => {
+        progress = Math.min(progress + increment, 100);
+        loaderBar.style.width = `${progress}%`;
+
+        if (progress < 100) {
+            setTimeout(updateLoader, interval);
+        } else {
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                document.body.style.overflow = 'visible';
+            }, 500);
+        }
+    };
+
+    // Prevent scroll during loading
+    document.body.style.overflow = 'hidden';
+    
+    // Start the loader
+    updateLoader();
+});</script>
+</head>
+<body>
+    <!-- Add Loader -->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="loader-logo">Oslo Viajes</div>
+            <div class="loader-progress">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a href="#" class="nav-logo">Oslo Viajes</a>
+            <div class="nav-menu">
+                <a href="#destinos" class="nav-link">Destinos</a>
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#promociones" class="nav-link">Promociones</a>
+                <a href="#xv-anos" class="nav-link">XV Años</a>
+                <a href="#sobre-nosotros" class="nav-link">Nosotros</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
+                <a href="tel:+4778282081" class="nav-cta">
+                    <i class="fas fa-phone-alt"></i>
+                    +47 78 28 20 81
+                </a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-subtitle">Tu próxima aventura comienza aquí</span>
+        <h1 class="hero-title">Explora el Mundo con Oslo Viajes</h1>
+        <p class="hero-description">Creamos experiencias de viaje inolvidables, desde mágicas quinceañeras hasta románticas lunas de miel. Agencia certificada por SECTUR.</p>
+        <a href="#destinos" class="hero-cta">
+            Descubrir Destinos
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+<!-- Featured Destinations -->
+<section class="destinations" id="destinos">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle">Destinos Exclusivos</span>
+            <h2 class="section-title">Experiencias Inolvidables</h2>
+            <p class="section-description">Descubre nuestros destinos más populares y déjate llevar por la magia de viajar</p>
+        </div>
+        
+        <div class="destinations-grid">
+            <!-- Cancún -->
+            <div class="destination-card featured">
+                <div class="destination-image">
+                    <img src="https://images.unsplash.com/photo-1682687982501-1e58ab814714" alt="Cancún" />
+                </div>
+                <div class="destination-overlay"></div>
+                <div class="destination-content">
+                    <span class="destination-tag">Destino Destacado</span>
+                    <h3 class="destination-title">Cancún Mágico</h3>
+                    <p class="destination-price">Desde $499 USD</p>
+                    <div class="destination-features">
+                        <span class="destination-feature">
+                            <i class="fas fa-umbrella-beach"></i>
+                            Playa Premium
+                        </span>
+                        <span class="destination-feature">
+                            <i class="fas fa-utensils"></i>
+                            Todo Incluido
+                        </span>
+                        <span class="destination-feature">
+                            <i class="fas fa-concierge-bell"></i>
+                            Servicio VIP
+                        </span>
+                    </div>
+                    <a href="#contacto" class="destination-cta">
+                        Reservar Ahora
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Disney World -->
+            <div class="destination-card regular">
+                <div class="destination-image">
+                    <img src="https://images.unsplash.com/photo-1599640842225-85d111c60e6b" alt="Disney World" />
+                </div>
+                <div class="destination-overlay"></div>
+                <div class="destination-content">
+                    <span class="destination-tag">Parques Temáticos</span>
+                    <h3 class="destination-title">Disney World</h3>
+                    <p class="destination-price">Desde $799 USD</p>
+                    <div class="destination-features">
+                        <span class="destination-feature">
+                            <i class="fas fa-ticket-alt"></i>
+                            FastPass+
+                        </span>
+                        <span class="destination-feature">
+                            <i class="fas fa-hotel"></i>
+                            Hotel Disney
+                        </span>
+                    </div>
+                    <a href="#contacto" class="destination-cta">
+                        Explorar Paquetes
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="servicios">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle">Nuestros Servicios</span>
+            <h2 class="section-title">Experiencias Personalizadas</h2>
+            <p class="section-description">Diseñamos cada viaje pensando en tus sueños y necesidades específicas</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- XV Años -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h3 class="service-title">XV Años</h3>
+                <p class="service-description">Celebra tus quince años con un viaje inolvidable lleno de momentos mágicos y experiencias únicas.</p>
+                <div class="service-features">
+                    <div class="service-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Sesión Fotográfica Profesional</span>
+                    </div>
+                    <div class="service-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Coordinador Dedicado</span>
+                    </div>
+                    <div class="service-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Actividades Exclusivas</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="service-cta">
+                    Cotizar Ahora
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Luna de Miel -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="service-title">Luna de Miel</h3>
+                <p class="service-description">Comienza tu vida en pareja con una experiencia romántica y única en destinos paradisíacos.</p>
+                <div class="service-features">
+                    <div class="service-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Hoteles Premium</span>
+                    </div>
+                    <div class="service-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Cenas Románticas</span>
+                    </div>
+                    <div class="service-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Experiencias VIP</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="service-cta">
+                    Planear Luna de Miel
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Viajes Familiares -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="service-title">Viajes Familiares</h3>
+                <p class="service-description">Crea recuerdos inolvidables con toda tu familia en destinos mágicos y seguros.</p>
+                <div class="service-features">
+                    <div class="service-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Actividades para Todos</span>
+                    </div>
+                    <div class="service-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Traslados Privados</span>
+                    </div>
+                    <div class="service-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Guías Especializados</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="service-cta">
+                    Explorar Opciones
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Promotions Section -->
+<section class="promotions" id="promociones">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle">Ofertas Especiales</span>
+            <h2 class="section-title-promotions">Promociones Exclusivas</h2>
+            <p class="section-description">Aprovecha nuestras ofertas por tiempo limitado</p>
+        </div>
+
+        <div class="promotions-grid">
+            <!-- Cancún Promotion -->
+            <div class="promotion-card large">
+                <div class="promotion-image">
+                    <img src="https://images.unsplash.com/photo-1682687982501-1e58ab814714" alt="Cancún Special" />
+                </div>
+                <div class="promotion-content">
+                    <div class="promotion-timer">
+                        <i class="fas fa-clock"></i>
+                        <span>Oferta termina en 48hrs</span>
+                    </div>
+                    <h3 class="promotion-title">Escape a Cancún</h3>
+                    <div class="promotion-price">
+                        <span class="price-new">$499 USD</span>
+                        <span class="price-old">$899 USD</span>
+                    </div>
+                    <div class="promotion-features">
+                        <span class="promotion-feature">
+                            <i class="fas fa-plane"></i>
+                            Vuelo Incluido
+                        </span>
+                        <span class="promotion-feature">
+                            <i class="fas fa-hotel"></i>
+                            5 Noches
+                        </span>
+                        <span class="promotion-feature">
+                            <i class="fas fa-utensils"></i>
+                            Todo Incluido
+                        </span>
+                    </div>
+                    <a href="#contacto" class="promotion-cta">
+                        Reservar Ahora
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Disney Promotion -->
+            <div class="promotion-card small">
+                <div class="promotion-image">
+                    <img src="https://images.unsplash.com/photo-1599640842225-85d111c60e6b" alt="Disney Special" />
+                </div>
+                <div class="promotion-content">
+                    <div class="promotion-timer">
+                        <i class="fas fa-clock"></i>
+                        <span>Última Semana</span>
+                    </div>
+                    <h3 class="promotion-title">Disney Mágico</h3>
+                    <div class="promotion-price">
+                        <span class="price-new">$799 USD</span>
+                        <span class="price-old">$1,299 USD</span>
+                    </div>
+                    <div class="promotion-features">
+                        <span class="promotion-feature">
+                            <i class="fas fa-ticket-alt"></i>
+                            FastPass+
+                        </span>
+                        <span class="promotion-feature">
+                            <i class="fas fa-hotel"></i>
+                            Hotel Disney
+                        </span>
+                    </div>
+                    <a href="#contacto" class="promotion-cta">
+                        Aprovechar Oferta
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about" id="sobre-nosotros">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content">
+                <span class="section-subtitle">Sobre Nosotros</span>
+                <h2 class="section-title">Tu Agencia de Confianza</h2>
+                <p class="section-description">Como agencia certificada por SECTUR, nos especializamos en crear experiencias de viaje inolvidables, cuidando cada detalle para hacer realidad tus sueños.</p>
+                
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">15K+</div>
+                        <div class="stat-label">Viajeros Felices</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Destinos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Años de Experiencia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Satisfacción</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-images">
+                <div class="about-image main">
+                    <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f" alt="About Us" />
+                </div>
+                <div class="about-image secondary">
+                    <img src="https://images.unsplash.com/photo-1682687982501-1e58ab814714" alt="Team" />
+                </div>
+                <div class="sectur-badge">
+                    <img src="/api/placeholder/80/80" alt="SECTUR Badge" />
+                    <div class="sectur-text">
+                        <strong>Certificado SECTUR</strong>
+                        <span>Agencia Registrada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contacto">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-content">
+                <span class="section-subtitle">Contacto</span>
+                <h2 class="section-title">¿Listo para Tu Próxima Aventura?</h2>
+                <p class="section-description">Déjanos tus datos y un asesor de viajes se pondrá en contacto contigo para diseñar tu experiencia perfecta.</p>
+            </div>
+
+            <form class="contact-form">
+                <div class="form-grid">
+                   <div class="form-group">
+                        <label class="form-label">Nombre Completo *</label>
+                        <input type="text" class="form-input" required placeholder="Tu nombre">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Teléfono *</label>
+                        <input type="tel" class="form-input" required placeholder="Tu número de teléfono">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Correo Electrónico *</label>
+                        <input type="email" class="form-input" required placeholder="Tu email">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Destino de Interés</label>
+                        <select class="form-input">
+                            <option value="">Selecciona un destino</option>
+                            <option value="cancun">Cancún</option>
+                            <option value="disney">Disney World</option>
+                            <option value="universal">Universal Studios</option>
+                            <option value="cruise">Cruceros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label class="form-label">Fecha Tentativa</label>
+                        <input type="date" class="form-input">
+                    </div>
+
+                    <div class="form-group full">
+                        <label class="form-label">Mensaje</label>
+                        <textarea class="form-input form-textarea" placeholder="Cuéntanos más sobre el viaje que deseas realizar"></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit full">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <style>
+        .footer {
+            background: var(--color-dark);
+            color: var(--color-light);
+            padding: var(--space-xl) 0 var(--space-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(64,224,208,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(60,179,113,0.05) 0%, transparent 50%);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+            position: relative;
+        }
+
+        .footer-brand {
+            padding-right: var(--space-xl);
+        }
+
+        .footer-logo {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            margin-bottom: var(--space-md);
+            color: var(--color-light);
+        }
+
+        .footer-description {
+            color: var(--color-gray-400);
+            margin-bottom: var(--space-md);
+            line-height: 1.8;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-light);
+            transition: all var(--transition-bounce);
+        }
+
+        .social-link:hover {
+            background: var(--color-primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--color-light);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .footer-link {
+            color: var(--color-gray-400);
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-link:hover {
+            color: var(--color-primary);
+            transform: translateX(5px);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--color-gray-400);
+        }
+
+        .contact-item i {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+                padding-right: 0;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+
+            .contact-item {
+                justify-content: center;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">Oslo Viajes</div>
+                <p class="footer-description">
+                    Creamos experiencias de viaje inolvidables, cuidando cada detalle para hacer realidad tus sueños de viaje.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-title">Enlaces Rápidos</h3>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-chevron-right"></i>
+                        Inicio
+                    </a>
+                    <a href="#destinos" class="footer-link">
+                        <i class="fas fa-chevron-right"></i>
+                        Destinos
+                    </a>
+                    <a href="#servicios" class="footer-link">
+                        <i class="fas fa-chevron-right"></i>
+                        Servicios
+                    </a>
+                    <a href="#promociones" class="footer-link">
+                        <i class="fas fa-chevron-right"></i>
+                        Promociones
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-title">Servicios</h3>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-chevron-right"></i>
+                        XV Años
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-chevron-right"></i>
+                        Luna de Miel
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-chevron-right"></i>
+                        Viajes Grupales
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-chevron-right"></i>
+                        Cruceros
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-contact">
+                <h3 class="footer-title">Contacto</h3>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+47 78 28 20 81</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Oslo.av@hotmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>León, Guanajuato, México</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Lun - Sáb: 9:00 - 18:00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Oslo Agencia de Viajes. Todos los derechos reservados. | Registro SECTUR</p>
+        </div>
+    </div>
+</footer>
